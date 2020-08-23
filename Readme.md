@@ -27,7 +27,6 @@ isOriginalTitle (boolean) – 0: not original title; 1: original title
 
 size = 564 MB
 rows = 6.95M (6,958,382)
-2,000,000
 
 ```
 tconst (string) - alphanumeric unique identifier of the title
@@ -39,12 +38,6 @@ startYear (YYYY) – represents the release year of a title. In the case of TV S
 endYear (YYYY) – TV Series end year. ‘\N’ for all other title types
 runtimeMinutes – primary runtime of the title, in minutes
 genres (string array) – includes up to three genres associated with the title
-```
-
-```sql
-CREATE TABLE Title(id TEXT, titleType TEXT, primaryTitle TEXT,
-                    originalTitle TEXT, isAdult INTEGER, startYear TEXT,
-                    endYear TEXT, runtimeMinutes TEXT, genres TEXT);
 ```
 
 ## Crew – Contains the director and writer information for all the titles in IMDb. Fields include: (title.crew.tsv.gz)
@@ -76,6 +69,9 @@ characters (string) - the name of the character played if applicable, else '\N'
 ```
 
 ## Ratings – Contains the IMDb rating and votes information for titles (title.ratings.tsv.gz)
+
+size = 17 MB
+rows = 1M (1,051,722)
 
 ```
 tconst (string) - alphanumeric unique identifier of the title
