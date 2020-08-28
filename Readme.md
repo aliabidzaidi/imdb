@@ -25,6 +25,8 @@ isOriginalTitle (boolean) – 0: not original title; 1: original title
 
 ## Title_basic - Contains the following information for titles: (title.basics.tsv.gz)
 
+✔
+
 size = 564 MB
 rows = 6.95M (6,958,382)
 
@@ -41,6 +43,11 @@ genres (string array) – includes up to three genres associated with the title
 ```
 
 ## Crew – Contains the director and writer information for all the titles in IMDb. Fields include: (title.crew.tsv.gz)
+
+✔
+
+size = 200 MB
+rows = 9.95M (6,958,383)
 
 ```
 tconst (string) - alphanumeric unique identifier of the title
@@ -59,6 +66,9 @@ episodeNumber (integer) – episode number of the tconst in the TV series
 
 ## Principal – Contains the principal cast/crew for titles (title.principals.tsv.gz)
 
+size = 1.63 GB
+rows = 1M (1,051,722)
+
 ```
 tconst (string) - alphanumeric unique identifier of the title
 ordering (integer) – a number to uniquely identify rows for a given titleId
@@ -70,6 +80,7 @@ characters (string) - the name of the character played if applicable, else '\N'
 
 ## Ratings – Contains the IMDb rating and votes information for titles (title.ratings.tsv.gz)
 
+✔
 size = 17 MB
 rows = 1M (1,051,722)
 
@@ -81,6 +92,10 @@ numVotes - number of votes the title has received
 
 ## Names – Contains the following information for names: (name.basics.tsv.gz )
 
+✔
+size = 580 MB
+rows = 10.2M (10,207,306)
+
 ```
 nconst (string) - alphanumeric unique identifier of the name/person
 primaryName (string)– name by which the person is most often credited
@@ -89,3 +104,21 @@ deathYear – in YYYY format if applicable, else '\N'
 primaryProfession (array of strings)– the top-3 professions of the person
 knownForTitles (array of tconsts) – titles the person is known for
 ```
+
+## Queries
+
+### Counts
+
+|            Query             | Result |                                         SQL                                          |
+| :--------------------------: | :----: | :----------------------------------------------------------------------------------: |
+| Total Movies with Type movie | 554754 |               select count(\*) from Title t WHERE t.titleType='movie';               |
+|  Total Movies with Ratings   | 250098 | select count(\*) from Title t JOIN Rating r ON(t.id = r.id) AND t.titleType='movie'; |
+
+### Todo: 📝
+
+- Movie where Actors are from 7+,
+- Actor + Genre + Role + roleCategory + knownForTitles + (Awards)
+- Filter data:
+  - DELETE all movies with release date before 1990
+  - DELETE all actors who haven't been in movies after 1990
+  - DELETE all episodes
